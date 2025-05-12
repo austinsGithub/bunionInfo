@@ -112,3 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }); // End video autoplay
 
 });
+
+function greet(){
+console.log('Welcomne')
+}

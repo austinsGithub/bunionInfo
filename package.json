@@ -1,0 +1,27 @@
+{
+  "name": "bunioninfo",
+  "version": "1.0.0",
+  "description": "This is a informational site for bunions.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/austinsGithub/bunionInfo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/austinsGithub/bunionInfo/issues"
+  },
+  "homepage": "https://github.com/austinsGithub/bunionInfo#readme",
+  "dependencies": {
+    "better-sqlite3": "^11.10.0",
+    "express": "^5.1.0",
+    "sqlite": "^5.1.1"
+  }
+}

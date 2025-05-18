@@ -768,3 +768,243 @@ html, body {
   overflow-y: auto;
   position: relative;
 }
+
+
+/* ==============================
+   12. DOCTOR LOCATOR STYLES
+   ============================== */
+
+#doctor-locator {
+  padding-block: 4rem 6rem; /* Adjust padding as needed */
+  background-color: var(--c-bg-alt); /* Or keep var(--c-bg) */
+  min-height: 70vh; /* Ensure it takes some space */
+}
+
+.locator-intro {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+  color: var(--c-text-muted);
+  font-size: 1.1rem;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+#location-search {
+  padding: 0.8rem 1.2rem;
+  border: 1px solid var(--c-glass-border);
+  background-color: var(--c-bg); /* Match background */
+  color: var(--c-text);
+  border-radius: 25px; /* Rounded corners */
+  min-width: 280px; /* Minimum width */
+  font-size: 1rem;
+  outline: none;
+  transition: border-color var(--trans), box-shadow var(--trans);
+}
+
+#location-search::placeholder {
+    color: var(--c-text-muted);
+    opacity: 0.7;
+}
+
+#location-search:focus {
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 3px rgba(80, 94, 251, 0.3); /* Accent focus ring */
+}
+
+#search-button {
+  /* Uses existing .btn styles */
+  padding: 0.8rem 1.8rem;
+  cursor: pointer;
+}
+
+.results-container {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); /* Map takes more space */
+  gap: 2rem;
+  margin-top: 2rem;
+  min-height: 500px; /* Give the container height */
+}
+
+#map {
+  height: 550px; /* Or desired height */
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--c-glass-border);
+  background-color: #e0e0e0; /* Placeholder background */
+}
+
+#results-list {
+  height: 550px; /* Match map height */
+  overflow-y: auto; /* Enable scrolling for results */
+  padding: 0.5rem; /* Add some padding inside */
+  border: 1px solid var(--c-glass-border);
+  border-radius: var(--radius);
+  background-color: var(--c-bg); /* Match background */
+}
+
+/* Custom Scrollbar (Optional, Webkit browsers) */
+#results-list::-webkit-scrollbar {
+  width: 8px;
+}
+#results-list::-webkit-scrollbar-track {
+  background: var(--c-bg-alt);
+  border-radius: 10px;
+}
+#results-list::-webkit-scrollbar-thumb {
+  background-color: var(--c-text-muted);
+  border-radius: 10px;
+  border: 2px solid var(--c-bg-alt);
+}
+#results-list::-webkit-scrollbar-thumb:hover {
+  background-color: var(--c-accent);
+}
+
+
+.doctor-result-item {
+  background: var(--c-bg-alt); /* Slightly different bg for contrast */
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  border-radius: calc(var(--radius) / 1.5);
+  border: 1px solid var(--c-glass-border);
+  transition: background-color var(--trans), border-color var(--trans);
+  cursor: pointer;
+}
+
+.doctor-result-item:last-child {
+    margin-bottom: 0; /* Remove margin from last item */
+}
+
+.doctor-result-item:hover,
+.doctor-result-item.highlighted { /* Added class for JS interaction */
+  background-color: rgba(80, 94, 251, 0.1); /* Subtle hover/highlight */
+  border-color: rgba(80, 94, 251, 0.3);
+}
+
+.doctor-result-item h4 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: var(--c-text);
+}
+
+.doctor-result-item .org-name {
+    font-size: 0.95rem;
+    color: var(--c-text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.doctor-result-item p {
+  font-size: 0.9rem;
+  color: var(--c-text-muted);
+  margin-bottom: 0.2rem;
+  line-height: 1.4;
+}
+
+.doctor-result-item .address {
+  margin-top: 0.5rem;
+}
+
+.doctor-result-item .phone {
+    margin-top: 0.5rem;
+}
+
+.doctor-result-item .phone a {
+  color: var(--c-accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+.doctor-result-item .phone a:hover {
+  text-decoration: underline;
+}
+
+.no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--c-text-muted);
+    font-style: italic;
+}
+
+#loading-indicator i {
+    color: var(--c-accent);
+}
+
+.error-message {
+    background-color: #581117; /* Darker red */
+    color: #ffdddd;
+    border: 1px solid #a52a2a;
+    padding: 1rem;
+    border-radius: var(--radius);
+    text-align: center;
+    margin: 1rem auto 2rem auto;
+    max-width: 80%;
+}
+
+
+/* Responsive adjustments for the locator */
+@media (max-width: 900px) {
+  .results-container {
+    grid-template-columns: 1fr; /* Stack map and list */
+    gap: 1.5rem;
+    min-height: unset; /* Remove min-height */
+  }
+
+  #map {
+    height: 400px; /* Adjust height for stacked view */
+    order: 1; /* Show map first */
+  }
+
+  #results-list {
+    height: auto; /* Allow list to grow */
+    max-height: 500px; /* But limit its height */
+    order: 2; /* Show list after map */
+    padding: 0.5rem; /* Reset padding */
+  }
+
+  #doctor-locator {
+    padding-block: 3rem 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+    .locator-intro {
+        font-size: 1rem;
+    }
+
+    .search-container {
+        flex-direction: column; /* Stack input and button */
+        align-items: stretch; /* Make them full width */
+        gap: 1rem;
+    }
+
+    #location-search {
+        min-width: unset;
+        width: 100%;
+    }
+
+    #search-button {
+        width: 100%;
+    }
+
+    #map {
+      height: 300px;
+    }
+
+     #results-list {
+        max-height: 400px;
+    }
+
+    .doctor-result-item {
+        padding: 1rem;
+    }
+     .doctor-result-item h4 {
+        font-size: 1.05rem;
+     }
+}

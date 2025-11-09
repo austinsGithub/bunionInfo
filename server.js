@@ -3,7 +3,6 @@ import sqlite3Init from 'sqlite3';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// --- Setup paths and constants ---
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PORT = process.env.PORT || 3000;
@@ -12,7 +11,6 @@ const DB_PATH = path.join(__dirname, 'bunion_doctors');
 const TABLE_NAME = 'bunion_doctors';
 const MAX_RESULTS = 100;
 
-// --- SQLite helper setup ---
 const sqlite3 = sqlite3Init.verbose();
 let db;
 
@@ -43,8 +41,7 @@ function query(sql, params = []) {
 
     db.all(sql, params, (err, rows) => {
       if (err) {
-        console.error('SQLite Query Error:', err.message); // This will show the SQL error
-        // Log details again if there's an error from the query
+        console.error('SQLite Query Error:', err.message); //  SQL error
         console.error('Failed SQL:', sql);
         console.error('Failed SQL Params:', params);
         reject(err);
@@ -58,7 +55,7 @@ function query(sql, params = []) {
 // --- Express server ---
 const app = express();
 
-app.use(express.static(__dirname)); // Serves files from the directory where server.js is located
+app.use(express.static(__dirname));
 
 app.get('/api/search-doctors', async (req, res) => {
   const zip = req.query.location?.trim();
@@ -72,7 +69,6 @@ app.get('/api/search-doctors', async (req, res) => {
       db = await connectDb();
     }
 
-    //  SQL query 
     const sql = `
       SELECT
         first_name AS firstName,
